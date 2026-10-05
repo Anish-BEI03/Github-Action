@@ -9,14 +9,10 @@ jobs:
     strategy:
       matrix:
         os:
-          - ubuntu
-          - windows
-        version: ["latest", "20.04"]
+          - ubuntu:latest
+          - windows:latest
         image: ["hello-world", "alpine"]
-        exclude:
-          - os: windows
-            version: "20.04"
-    runs-on: ${{ matrix.os }}-${{ matrix.version }}
+    runs-on: ${{ matrix.os }}
     container: docker
     steps:
       - name: Echo Docker Details on image ${{ matrix.image }} os ${{ matrix.os }} version ${{ matrix.version }}
