@@ -15,6 +15,7 @@ jobs:
             
     
     test_job:
+        need: ascill_job
         runs-on: ubuntu-latest
         steps:
             - name: Sleep for 10 seconds
@@ -24,6 +25,7 @@ jobs:
               run: grep -i "dragon" dragon.txt
 
     deploy_job:
+        need: test_job
         runs-on: ubuntu-latest
         steps:
             - name: Read the file
