@@ -15,8 +15,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     container: docker
     steps:
-      - name: Echo Docker Details on image ${{ matrix.image }} os ${{ matrix.os }} version ${{ matrix.version }}
+      - name: Echo Docker Details on image ${{ matrix.image }} os ${{ matrix.os }}
         run: docker info
 
-      - name: Run Images on image ${{ matrix.image }} os ${{ matrix.os }} version ${{ matrix.version }}
+      - name: Run Images on image ${{ matrix.image }}
         run: docker run ${{ matrix.image }}
