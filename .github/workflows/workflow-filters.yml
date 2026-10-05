@@ -1,0 +1,33 @@
+name: Workflow filters and Activities
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - main
+      - "!feature/**" # Workflow will not run for any branch that starts with feature/**
+      - "!test/**" # Workflow will not run for any branch that starts with test/**
+    # branches-ignore:
+    #   - feature/*
+    #   - test/**
+    paths-ignore:
+      - "*.md"
+
+  pull_request:
+    types:
+      - opened
+      - closed
+    paths-ignore:
+      - "*.md"
+    branches:
+      - main
+
+jobs:
+  filter-activity-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Workflow Trigger Info
+        run: |
+          echo "Workflow triggered by event: ${{ github.event_name }}"
+          echo "Branch/Ref: ${{ github.ref }}"
