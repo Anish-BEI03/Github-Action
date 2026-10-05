@@ -9,11 +9,15 @@ jobs:
       fail-fast: false # Don't fail the whole workflow if one job fails
       max-parallel: 2 # Run 2 jobs in parallel
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, ubuntu-22.04, windows-latest]
         image: [hello-world, alpine]
         exclude:
           - os: windows-latest
             image: alpine
+
+        include:
+          - os: ubuntu-24.04
+            image: busybox
     runs-on: ${{ matrix.os }}
 
     steps:
