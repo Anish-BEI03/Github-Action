@@ -8,6 +8,10 @@ Git is a distributed version control system that tracks changes in source code d
 
 GitHub Actions is a CI/CD platform that allows you to automate your software development workflows.
 
+## what is github?
+
+GitHub is a web-based platform for version control using Git. It provides a user interface for Git, making it easier to use and collaborate on projects.
+
 ## Expression Syntax
 
 use expression to programmatically control `JOBS` and `STEP` based on condition.
