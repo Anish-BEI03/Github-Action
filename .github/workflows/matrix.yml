@@ -2,7 +2,6 @@ name: Matrix test
 
 on:
   push:
-  workflow_dispatch:
 
 jobs:
   deploy-on-ubuntu:
@@ -13,14 +12,10 @@ jobs:
         os:
           - ubuntu:latest
           - windows:latest
-          - ubuntu-24.04
         image: [hello-world, alpine]
         exclude:
           - os: windows:latest
             image: alpine
-        include:
-          - os: ubuntu-24.04
-            image: arm64/alpine
     runs-on: ${{ matrix.os }}
     container: docker
     steps:
