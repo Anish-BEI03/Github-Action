@@ -7,19 +7,27 @@ jobs:
         steps:
             - name: checkout Repo
               uses: actions/checkout@v7
-            
+
             - name: Execute Shell script
               run: |
                chmod +x script.sh
                ./script.sh
+
+            - name: upload the dragon file
+              uses: actions/upload-artifact@v7
+              with:
+                name: dragon.txt
+                path: dragon.txt
             
     
     test_job:
         needs: ascill_job
         runs-on: ubuntu-latest
         steps:
-            - name: Sleep for 10 seconds
-              run:  sleep 10
+            - name: dowload dragon file
+              uses: actions/download-artifact@v8
+              with:
+                name: dragon.txt 
               
             - name: Test file exits
               run: grep -i "dragon" dragon.txt
@@ -28,6 +36,11 @@ jobs:
         needs: test_job
         runs-on: ubuntu-latest
         steps:
+            - name: dowload dragon file
+              uses: actions/download-artifact@v8
+              with:
+                name: dragon.txt 
+                
             - name: Read the file
               run: cat dragon.txt
             
