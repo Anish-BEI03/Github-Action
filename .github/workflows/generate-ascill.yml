@@ -1,5 +1,5 @@
-on:
-    push
+name: Demo-Action
+on: push
 
 jobs:
     ascill_job:
