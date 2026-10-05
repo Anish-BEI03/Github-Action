@@ -51,4 +51,7 @@ Contexts are objects that provide information about the workflow and the runner.
 11. **strategy**: information about strategy
 12. **matrix**: information about matrix
 
-##
+## Workflow Event filter and Activity Types
+
+- Event name is `issues` and activity type is `opened`
+  - means issues events that happened inside repository
