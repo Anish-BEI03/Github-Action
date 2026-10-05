@@ -6,19 +6,21 @@ on:
 
 jobs:
   deploy-on-ubuntu:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os:
+          - ubuntu
+          - windows
+        version: ["latest", "20.04"]
+        image: ["hello-world", "alpine"]
+        exclude:
+          - os: windows
+            version: "20.04"
+    runs-on: ${{ matrix.os }}-${{ matrix.version }}
+    container: docker
     steps:
-      - name: Echo Docker Details
+      - name: Echo Docker Details on image ${{ matrix.image }} os ${{ matrix.os }} version ${{ matrix.version }}
         run: docker info
 
-      - name: Run Images
-        run: docker run hello-world
-
-  deploy-on-windows:
-    runs-on: windows-latest
-    steps:
-      - name: Echo Docker Details
-        run: docker info
-
-      - name: Run Images
-        run: docker run hello-world
+      - name: Run Images on image ${{ matrix.image }} os ${{ matrix.os }} version ${{ matrix.version }}
+        run: docker run ${{ matrix.image }}
