@@ -3,7 +3,7 @@ on: push
 
 jobs:
     ascill_job:
-        runs_on: ubuntu-latest
+        runs-on: ubuntu-latest
         steps:
             - name: checkout Repo
               uses: actions/checkout@v7
