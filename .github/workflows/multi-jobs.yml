@@ -1,0 +1,33 @@
+name: Demo-Action-Multi-jobs
+on: push
+
+jobs:
+    ascill_job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout Repo
+              uses: actions/checkout@v7
+            
+            - name: Execute Shell script
+              run: |
+               chmod +x script.sh
+               ./script.sh
+            
+    
+    test_job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Sleep for 10 seconds
+              run:  sleep 10
+              
+            - name: Test file exits
+              run: grep -i "dragon" dragon.txt
+
+    deploy_job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Read the file
+              run: cat dragon.txt
+            
+            - name: deploy
+              run: echo " deploy......."
