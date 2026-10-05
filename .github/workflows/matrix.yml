@@ -9,15 +9,13 @@ jobs:
       fail-fast: false # Don't fail the whole workflow if one job fails
       max-parallel: 2 # Run 2 jobs in parallel
       matrix:
-        os:
-          - ubuntu:latest
-          - windows:latest
+        os: [ubuntu:latest, windows:latest]
         image: [hello-world, alpine]
         exclude:
           - os: windows:latest
             image: alpine
     runs-on: ${{ matrix.os }}
-    container: docker
+
     steps:
       - name: Echo Docker Details for image ${{ matrix.image }} on os ${{ matrix.os }}
         run: docker info
